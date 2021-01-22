@@ -14,10 +14,12 @@
             <div class="loginContainer">
                 <span id="headingText">Login and enjoy <span id="highlighted">Unlimited</span> video calling</span>
                 <br/>
-                <input type="text" id="email" placeholder="Email"/>
-                <br/>
-                <input type="password" id="password" placeholder="password"/>
-                <button class="submitButton">Login</button>
+                <form action="./index.html" onsubmit="return validate()">
+                    <input type="text" id="email" placeholder="Email" name="email"/>
+                    <br/>
+                    <input type="password" id="password" placeholder="password" name="password"/>
+                    <button class="submitButton" type="submit" onclick="validate()">Login</button>
+                </form>
             </div>
         </div>
         <div id="right-pane">
@@ -29,5 +31,30 @@
             <span id="bottomText">Chat with your <strong>closest friends</strong>  no matter how far they are</span>
         </div>
     </div>
+    <script>
+        function validate() {
+           let email = document.getElementById("email")
+           let password = document.getElementById("password")
+
+           let check = true
+
+           if (email.value.match(/\S+@\S+/)) {
+               email.className = ""
+           } else {
+               email.className = "incorrect"
+               check = false
+           }
+
+           if (password.value.length >= 8) {
+                password.className = ""
+            }
+            else {
+                password.className = "incorrect"
+                check = false
+            }
+
+            return check
+        }
+    </script>
     </body>
 </html>
